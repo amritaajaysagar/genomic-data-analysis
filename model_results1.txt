@@ -1,0 +1,61 @@
+Results for svc:
+Accuracy: 0.4799398194583751
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.54      0.66      0.60      2041
+           1       0.40      0.50      0.44       414
+           2       0.37      0.24      0.29      1533
+
+    accuracy                           0.48      3988
+   macro avg       0.44      0.46      0.44      3988
+weighted avg       0.46      0.48      0.46      3988
+
+ROC AUC Score: 0.6499632460646559
+--------------------------------------------------
+Results for rf:
+Accuracy: 0.5699598796389167
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.62      0.74      0.67      2041
+           1       0.43      0.36      0.39       414
+           2       0.51      0.40      0.45      1533
+
+    accuracy                           0.57      3988
+   macro avg       0.52      0.50      0.50      3988
+weighted avg       0.56      0.57      0.56      3988
+
+ROC AUC Score: 0.7144607837218794
+--------------------------------------------------
+Results for etc:
+Accuracy: 0.5737211634904714
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.63      0.72      0.68      2041
+           1       0.41      0.35      0.38       414
+           2       0.51      0.43      0.47      1533
+
+    accuracy                           0.57      3988
+   macro avg       0.52      0.50      0.51      3988
+weighted avg       0.56      0.57      0.57      3988
+
+ROC AUC Score: 0.7207249279153177
+--------------------------------------------------
+Evaluating Stacking Model:
+Stacking Model Results:
+Accuracy: 0.5809929789368105
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.65      0.73      0.69      2041
+           1       0.39      0.14      0.21       414
+           2       0.49      0.50      0.50      1533
+
+    accuracy                           0.58      3988
+   macro avg       0.51      0.46      0.46      3988
+weighted avg       0.56      0.58      0.57      3988
+
+ROC AUC Score: 0.6760673025106692
+--------------------------------------------------
