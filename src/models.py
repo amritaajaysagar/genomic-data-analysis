@@ -6,15 +6,17 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score
 from xgboost import XGBClassifier
+from imblearn.over_sampling import ADASYN
 
 def run_modeling(encoded_filepath):
     # Load encoded data
     train_data = pd.read_csv(encoded_filepath)
     
     # Define features and target
-    X = train_data.drop('Genetic_Disorder', axis=1)
+    X = train_data.drop(['Genetic_Disorder','Disorder_Subclass'], axis=1)
     y = train_data['Genetic_Disorder']
-    
+    # Define features and target
+
     # Split the data into training and test sets
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
@@ -83,7 +85,27 @@ def run_modeling(encoded_filepath):
     # Optionally, save the trained model
     # import joblib
     # joblib.dump(stacking_classifier, 'stacking_classifier.pkl')
-    
+    # ========== Apply ADASYN to the Training Data ==========
+    adasyn = ADASYN(random_state=42)
+    X_train_adasyn, y_train_adasyn = adasyn.fit_resample(X_train, y_train)
+
+    # Verify the new class distribution after ADASYN
+    print("\nClass distribution after ADASYN:")
+    print(pd.Series(y_train_adasyn).value_counts())
+
+    # ========== Model Evaluation After ADASYN ==========
+    print("\n=== Model Evaluation After ADASYN ===")
+    # Retrain the model on the ADASYN-resampled data
+
+    stacking_classifier.fit(X_train_adasyn, y_train_adasyn)
+    y_pred_adasyn = stacking_classifier.predict(X_test)
+
+    # Calculate and print evaluation metrics for the ADASYN-trained model
+    print("Accuracy:", accuracy_score(y_test, y_pred_adasyn))
+    print(classification_report(y_test, y_pred_adasyn, target_names=[
+            disorder_mapping[0], disorder_mapping[1], disorder_mapping[2]
+        ]))
+
     return stacking_classifier
 
 # Example usage
