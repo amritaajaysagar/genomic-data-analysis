@@ -1,0 +1,12 @@
+=== Model Evaluation for Stacking Classifier ===
+Accuracy: 0.6025576730190572
+              precision    recall  f1-score   support
+
+           0       0.65      0.79      0.71      2041
+           1       0.43      0.30      0.35       414
+           2       0.55      0.44      0.48      1533
+
+    accuracy                           0.60      3988
+   macro avg       0.54      0.51      0.52      3988
+weighted avg       0.59      0.60      0.59      3988
+
